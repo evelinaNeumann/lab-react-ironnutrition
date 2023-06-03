@@ -1,16 +1,21 @@
 import React from 'react';
-import { Card, Row, Col, Divider, Input, Button } from "antd";
+import { Card, Button } from 'antd';
 
-function FoodBox({ food }) {
+const FoodBox = ({ food, onDelete }) => {
+  const handleDelete = () => {
+    onDelete(food);
+  };
+
   return (
-    <Card title={food.name} style={{ width: 300 }}>
-      <img src={food.image} alt={food.name} style={{ width: 200, height: 200 }} />
-      <Divider />
+    <Card title={food.name}>
+      <img src={food.image} alt={food.name} style={{ width: '100px', height: '100px' }} />
       <p>Calories: {food.calories}</p>
       <p>Servings: {food.servings}</p>
-      <Button>Add to Cart</Button>
+      <Button type="danger" onClick={handleDelete}>
+        Delete
+      </Button>
     </Card>
   );
-}
+};
 
 export default FoodBox;
